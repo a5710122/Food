@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>FoodDetail</title>
+    </head>
+    <body>
+        
+       <h1> List Food </h1>
+
+           {% if food_list_to_html %}
+              
+                 <ul>
+                 {% for food in food_list_to_html %}
+                     {{forloop.counter}}. <b> {{ food.food_text }} </b> have suger:  <b>{{ food.number_sugar }}</b> % <br>
+ 
+                 {% endfor %}
+                 
+                 <br>
+                 <b> Count Food: <b> {{count_food_to_html}}
+              
+               </ul>
+            {% else %}
+                <p>No Food are available.</p> 
+            {% endif %}
+       
+
+           <form action="add_food" method = "POST">
+               <b>Your new Food:</b><br><br> 
+               Food: <input type="text" name="new_text_food" id="new_text_food" placeholder="Your new food"><br>
+               Sugar: <input type="text" name="new_text_sugar" id="new_text_sugar" placeholder="Your sugar"><br><br>
+               {% csrf_token %}   
+                <input type="submit" value="Submit" id="submit"><br><br>
+            </form>
+
+            <form action="delete_food" method = "POST">
+               <b>What Food you want delete:</b><br><br>
+               
+               Food: <input type="text" name="new_text_food" id="new_text_food" placeholder="Your new food"><br>
+               {% csrf_token %}
+                
+                <input type="submit" value="Submit" id="submit"><br>
+            </form>
+
+            <form action="config_food" method = "POST">
+               <b>What Food you want config:</b><br><br>
+
+               Old Food: <input type="text" name="old_text_food" id="old_text_food" placeholder="Your old food"><br>
+               New Food: <input type="text" name="config_text_food" id="config_text_food" placeholder="Your config food"><br>
+               New Sugar: <input type="text" name="config_text_sugar" id="config_text_sugar" placeholder="Your config sugar"><br><br>
+               {% csrf_token %}
+                
+                <input type="submit" value="Submit" id="submit"><br>
+            </form>
+
+         
+         </br>
+         </br>
+         
+      
+
+    </body>
+</html>
