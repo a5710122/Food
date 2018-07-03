@@ -51,7 +51,7 @@ def delete_food(request):
     count_food = Food.objects.count
     
     if request.method == 'POST':
-       delete_food = request.POST['new_text_food']
+       delete_food = request.POST['delete_text_food']
     
        check = Food.objects.filter(food_text=delete_food)
        #print(check)

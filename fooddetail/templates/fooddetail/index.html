@@ -4,51 +4,53 @@
     </head>
     <body>
         
-       <h1> List Food </h1>
+       <h1>List Food</h1>
 
+       <table id="food_table">
            {% if food_list_to_html %}
               
                  <ul>
                  {% for food in food_list_to_html %}
-                     {{forloop.counter}}. <b> {{ food.food_text }} </b> have suger:  <b>{{ food.number_sugar }}</b> % <br>
+                     <tr><td>{{forloop.counter}}. <b> {{ food.food_text }} </b> have sugar:  <b>{{ food.number_sugar }}</b> % <br></td></tr>
  
                  {% endfor %}
                  
                  <br>
-                 <b> Count Food: <b> {{count_food_to_html}}
+                 
               
                </ul>
             {% else %}
-                <p>No Food are available.</p> 
+                <p2>No Food are available.</p2> 
             {% endif %}
-       
-
+       </table>
+           
+           <br> Count Food: {{count_food_to_html}} <br> <br> 
            <form action="add_food" method = "POST">
                <b>Your new Food:</b><br><br> 
                Food: <input type="text" name="new_text_food" id="new_text_food" placeholder="Your new food"><br>
                Sugar: <input type="text" name="new_text_sugar" id="new_text_sugar" placeholder="Your sugar"><br><br>
                {% csrf_token %}   
-                <input type="submit" value="Submit" id="submit"><br><br>
+                <input type="submit" value="Submit" id="submit_new_text_food"><br><br>
             </form>
 
             <form action="delete_food" method = "POST">
                <b>What Food you want delete:</b><br><br>
                
-               Food: <input type="text" name="new_text_food" id="new_text_food" placeholder="Your new food"><br>
+               Food: <input type="text" name="delete_text_food" id="delete_text_food" placeholder="Delete Food"><br>
                {% csrf_token %}
                 
-                <input type="submit" value="Submit" id="submit"><br>
+                <input type="submit" value="Submit" id="submit_delete_text_food"><br>
             </form>
 
             <form action="config_food" method = "POST">
-               <b>What Food you want config:</b><br><br>
+               <b>What Food you want modify:</b><br><br>
 
                Old Food: <input type="text" name="old_text_food" id="old_text_food" placeholder="Your old food"><br>
-               New Food: <input type="text" name="config_text_food" id="config_text_food" placeholder="Your config food"><br>
-               New Sugar: <input type="text" name="config_text_sugar" id="config_text_sugar" placeholder="Your config sugar"><br><br>
+               New Food: <input type="text" name="config_text_food" id="config_text_food" placeholder="Your modify food"><br>
+               New Sugar: <input type="text" name="config_text_sugar" id="config_text_sugar" placeholder="Your modify sugar"><br><br>
                {% csrf_token %}
                 
-                <input type="submit" value="Submit" id="submit"><br>
+                <input type="submit" value="Submit" id="submit_old_text_food"><br>
             </form>
 
          
